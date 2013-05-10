@@ -1,0 +1,22 @@
+(defun split_and_arrange-frame (w h &optional split_nb)
+  (let ((frame (selected-frame)))
+      (delete-other-windows)
+      (set-frame-position frame 5 0)
+      (set-frame-size frame w h)
+      (if split_nb
+          (if (< split_nb 10)
+              (while (> split_nb 1)
+                (split-window-horizontally)
+                (setq split_nb (1- split_nb))
+               )
+            )
+      )
+  )
+)
+
+
+(defun iscreen_size ()
+  (interactive)
+  (split_and_arrange-frame 360 91 2)
+  (balance-windows)
+)
